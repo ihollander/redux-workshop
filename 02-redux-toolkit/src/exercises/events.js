@@ -17,9 +17,12 @@ function setupEvents(store) {
       const item = store.getState().groceries.find((item) => item.id === id);
 
       const groceriesAction = groceriesPurchaseItem(item);
+      // const groceriesAction = { type: "groceries/purchaseItem", payload: item }
+
       store.dispatch(groceriesAction);
 
       const userAction = userPurchaseItem(item);
+      // const userAction = { type: "user/purchaseItem", payload: item }
       store.dispatch(userAction);
     }
   });
@@ -35,6 +38,7 @@ function setupEvents(store) {
       isPurchase: false,
     };
     const action = addToList(newItem);
+    // { type: "groceries/addToList", payload: newItem }
     store.dispatch(action);
   });
 }

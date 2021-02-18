@@ -14,14 +14,18 @@ const groceriesSlice = createSlice({
   reducers: {
     addToList(state, action) {
       // ✅ update state by adding the new item from action.payload
+      state.push(action.payload);
     },
     purchaseItem(state, action) {
       // ✅ update state by changing the item in action.payload from isPurchase = false to isPurchase = true
       // start by finding the item in state (use state.find, and check the id of the item in action.payload)
+      const item = state.find((item) => item.id === action.payload.id);
       // then, after finding the item, set item.isPurchase = true
+      item.isPurchase = true;
     },
   },
 });
 
 export const { addToList, purchaseItem } = groceriesSlice.actions;
+
 export default groceriesSlice.reducer;

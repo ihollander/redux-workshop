@@ -52,17 +52,17 @@ const initialState = { value: 0 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case "counter/incremented":
+    case "beef/incremented":
       return {
         ...state,
         value: state.value + 1,
       };
-    case "counter/decremented":
+    case "beef/decremented":
       return {
         ...state,
         value: state.value - 1,
       };
-    case "counter/incrementedBy":
+    case "beef/incrementedBy":
       return {
         ...state,
         value: state.value + action.payload,
@@ -71,6 +71,10 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+
+const nextState = reducer({ value: 0 }, { type: "counter/incremented" });
+const nextState2 = reducer(nextState, { type: "counter/incremented" });
+const nextState3 = reducer(nextState2, { type: "counter/incremented" });
 
 function incremented() {
   return { type: "counter/incremented" };
@@ -107,23 +111,25 @@ Put together, that means we can re-write our reducer code like this:
 import { createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
-  name: "counter",
+  name: "beef",
   initialState: { value: 0 },
   reducers: {
     incremented(state) {
       // mutation is allowed because of immer.js
-      state = state + 1;
+      state.value = state.value + 1;
     },
     decremented(state) {
-      state = state - 1;
+      state.value = state.value - 1;
     },
     incrementedBy(state, action) {
-      state = state + action.payload;
+      state.value = state.value + action.payload;
     },
   },
 });
 
-export const { incremented, decremented, incrementedBy } = counterSlice.actions;
+const { incremented, decremented, incrementedBy } = counterSlice.actions;
+
+export { incremented, decremented, incrementedBy };
 export default counterSlice.reducer;
 ```
 

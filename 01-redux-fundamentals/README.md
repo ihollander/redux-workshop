@@ -54,6 +54,12 @@ Update this function so that it returns a new value based on the state and actio
 Example:
 
 ```js
+function reducer(state = 0, action) {
+  if (action.type === "counter/add") {
+    return state + action.payload;
+  }
+}
+
 reducer(0, { type: "counter/add", payload: 10 });
 // => 10
 

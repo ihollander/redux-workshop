@@ -6,9 +6,13 @@
 
 What are some challenges you've encountered when working with state?
 
-- example
-- example
-- example
+- knowing where state should live
+- lots of state!
+- sending state up and down (++)
+- figuring out what need state (++)
+- working with async code + state, and also remembering state updates are themselves async
+- writing state in general is tedious: syntax for creating state, and knowing what is affected by that
+- deciding initial state - initial state of null can cause issues; multiple cases to handle depending on state
 
 ## Core Concepts
 

@@ -4,6 +4,8 @@
 // use me to check your code
 import { store, setupEvents, setupRender } from "./exercises";
 
+debugger;
+
 document.addEventListener("DOMContentLoaded", () => {
   setupEvents(store);
   setupRender(store);
