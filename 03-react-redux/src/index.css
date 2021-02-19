@@ -80,14 +80,14 @@ header button {
 }
 
 .Filter {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-bottom: 1rem;
 }
 
 .Filter select,
 .Filter input {
-  width: 45%;
-  margin: 1rem 0;
   background: var(--cyan);
 }
 
@@ -137,13 +137,18 @@ header button {
 }
 
 .NewItem form {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 100px;
+  gap: 1rem;
 }
 
 .NewItem button {
   background: var(--yellow);
+  align-self: end;
+}
+
+.NewItem input {
+  width: 100%;
 }
 
 .NewItem label {

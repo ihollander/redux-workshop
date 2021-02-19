@@ -2,7 +2,7 @@
 
 ## Setup
 
-Fork and clone this repo. There are three subfolders with exercises:
+Clone this repo and make a branch for your code. There are three subfolders with exercises:
 
 - `01-redux-fundamentals`
 - `02-redux-toolkit`

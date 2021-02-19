@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeItem, updateItem } from "../redux/itemsSlice";
 
 function Item({ item }) {
-  const { id, isInCart, name, category } = item;
+  const dispatch = useDispatch();
+  const { id, isInCart, name, category, price } = item;
 
   function handleUpdateClick() {
     fetch(`http://localhost:3000/items/${id}`, {
@@ -14,8 +17,9 @@ function Item({ item }) {
       }),
     })
       .then((r) => r.json())
-      .then((udpatedItem) => {
-        console.log("Updating", udpatedItem);
+      .then((updatedItem) => {
+        const action = updateItem(updatedItem);
+        dispatch(action);
       });
   }
 
@@ -25,14 +29,17 @@ function Item({ item }) {
     })
       .then((r) => r.json())
       .then(() => {
-        console.log("Deleting", item);
+        const action = removeItem(id);
+        dispatch(action);
       });
   }
 
   return (
     <li className={isInCart ? "in-cart" : ""}>
       <span>{name}</span>
-      <span className="category">{category}</span>
+      <span className="category">
+        {category} | ${price}
+      </span>
       <span>
         <button
           onClick={handleUpdateClick}

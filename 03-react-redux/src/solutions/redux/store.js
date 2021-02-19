@@ -1,12 +1,14 @@
-import { createStore, combineReducers } from "redux";
-import itemReducer from "./itemReducer";
-import categoryReducer from "./categoryReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import themeReducer from "./themeSlice";
+import itemsReducer from "./itemsSlice";
+import filtersReducer from "./filtersSlice";
 
-const reducer = combineReducers({
-  items: itemReducer,
-  categories: categoryReducer,
+const store = configureStore({
+  reducer: {
+    theme: themeReducer,
+    items: itemsReducer,
+    filters: filtersReducer,
+  },
 });
-
-const store = createStore(reducer);
 
 export default store;

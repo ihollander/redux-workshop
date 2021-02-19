@@ -1,15 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDarkMode } from "../redux/themeSlice";
 
 function Header() {
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
+  const dispatch = useDispatch();
+
   function handleDarkModeClick() {
-    console.log("Toggling Dark Mode");
+    const action = toggleDarkMode();
+    dispatch(action);
   }
 
   return (
     <header>
       <h1>Shopster</h1>
       <button onClick={handleDarkModeClick}>
-        {true ? "Dark" : "Light"} Mode
+        {isDarkMode ? "Dark" : "Light"} Mode
       </button>
     </header>
   );

@@ -1,13 +1,20 @@
 import React from "react";
-import { categories } from "../../data";
+import { useDispatch } from "react-redux";
+import { setCategoryFilter, setNameFilter } from "../redux/filtersSlice";
+
+const categories = ["Produce", "Dairy", "Dessert", "Deli"];
 
 function Filter() {
+  const dispatch = useDispatch();
+
   function handleFilterNameChange(e) {
-    console.log("Filtering by name:", e.target.value);
+    const action = setNameFilter(e.target.value);
+    dispatch(action);
   }
 
   function handleFilterCategoryChange(e) {
-    console.log("Filtering by category:", e.target.value);
+    const action = setCategoryFilter(e.target.value);
+    dispatch(action);
   }
 
   return (

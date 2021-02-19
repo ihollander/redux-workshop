@@ -1,16 +1,20 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Item from "./Item";
-import { items } from "../../data";
 
 function ShoppingCart() {
-  const listItems = items
-    .filter((item) => item.isInCart)
-    .map((item) => <Item key={item.id} item={item} />);
+  const items = useSelector((state) => {
+    return state.items.filter((item) => item.isInCart);
+  });
+
+  const total = items.reduce((sum, item) => sum + item.price, 0);
+
+  const listItems = items.map((item) => <Item key={item.id} item={item} />);
 
   return (
     <section className="ShoppingCart">
-      <h2>In Cart</h2>
       <ul className="Items">{listItems}</ul>
+      <h3>Cart Total: ${total}</h3>
     </section>
   );
 }
